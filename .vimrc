@@ -109,12 +109,48 @@ Plug 'jremmen/vim-ripgrep'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 
+if has('nvim')
+	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+	Plug 'Shougo/deoplete.nvim'
+	Plug 'roxma/nvim-yarp'
+	Plug 'roxma/vim-hug-neovim-rpc'
+endif
+let g:deoplete#enable_at_startup = 1
+
+" post install (yarn install | npm install)
+Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+
+" tsx support
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+
+" coc vim
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
+
+" emmet
+Plug 'mattn/emmet-vim'
+
+" Colorizer (hexcodes)
+Plug 'chrisbra/Colorizer'
+
 " Initialize plugin system
 call plug#end()
 
-nnoremap <C-p> :FZF<Cr>
-nnoremap <C-f> :Rg  
-nnoremap <C-r> :NERDTreeFind <bar> wincmd p<Cr>
+let mapleader= "\<space>"
+let colorizer_auto_filetype = 'css,scss,less'
+
+aug FT_ColorizerPlugin
+	au!
+	exe "au Filetype" g:colorizer_auto_filetype 
+	    \ "call Colorizer#LocalFTAutoCmds(1)\|
+	    \ :ColorHighlight"
+aug END
+
+nnoremap <leader>p :FZF<Cr>
+nnoremap <leader>f :Rg  
+nnoremap <leader>r :NERDTreeFind <bar> wincmd p<Cr>
 nnoremap <F6> :NERDTreeToggle <bar> wincmd p<Cr>
-nnoremap <C-t> :tabedit \| :NERDTreeToggle <bar> wincmd p<Cr>
-nnoremap <C-y> :tabclose<Cr>
+nnoremap <leader>t :tabedit \| :NERDTreeToggle <bar> wincmd p<Cr>
+nnoremap <leader>y :tabclose<Cr>
+nnoremap <leader>c :ColorHighlight<Cr>
