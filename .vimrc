@@ -51,7 +51,11 @@ set number
 set relativenumber
 set clipboard=unnamed
 set hidden
+set backupdir=/tmp//
+set directory=/tmp//
+set undodir=/tmp//
 set path=.,/usr/include,,**
+set tabstop=4
 execute pathogen#infect()
 call pathogen#helptags()
 autocmd vimenter * NERDTree
