@@ -62,7 +62,7 @@ ZSH_THEME="doubleend"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git docker)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -95,7 +95,7 @@ export LANG=en_US.UTF-8
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias wf='workflow'
-alias mr2='magerun2'
+alias mr2='wf2 m'
 alias ll='ls  -alhG'
 alias of='lsof -nP +c 15 | grep LISTEN'
 alias bu='brew unlink'
@@ -103,8 +103,32 @@ alias bl='brew link'
 alias blf='brew link --force'
 alias tnew='tmux new -s'
 alias tres='tmux a -t'
+alias simulator='open /Applications/Xcode.app/Contents/Developer/Applications/Simulator.app'
 export PATH="$PATH:$HOME/.composer/vendor/bin"
 
 export PATH="/Users/josh/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:~/.composer/vendor/bin:/opt/X11/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/josh/.composer/vendor/bin:/Users/josh/.vimpkg/bin"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
+
+export PATH="$PATH:/opt"
+
+export PATH="$HOME/.cargo/bin:$PATH"
+
+removedefiner()
+{
+    tmp_lang=$LANG
+    tmp_lc_all=$LC_ALL
+    tmp_lc_ctype=$LC_CTYPE
+    LC_ALL=C
+    LC_CTYPE=C
+    LANG=C
+    sed -i '' 's/DEFINER=[^*]*\*/\*/g' ${1}
+    LC_ALL=$tmp_lc_all
+    LC_CTYPE=$tmp_lc_ctype
+    LANG=$tmp_lang
+}
+alias valetplusplus='wf2'

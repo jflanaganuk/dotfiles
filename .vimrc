@@ -58,8 +58,6 @@ set path=.,/usr/include,,**
 set tabstop=4
 execute pathogen#infect()
 call pathogen#helptags()
-autocmd vimenter * NERDTree
-autocmd vimenter * wincmd p
 
 " installs vim-plug if doesnt exist
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -85,7 +83,6 @@ Plug 'https://github.com/junegunn/vim-github-dashboard.git'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
 " On-demand loading
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
 
 " Using a non-master branch
@@ -112,15 +109,6 @@ Plug 'jremmen/vim-ripgrep'
 " Fugitive
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
-
-if has('nvim')
-	Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-	Plug 'Shougo/deoplete.nvim'
-	Plug 'roxma/nvim-yarp'
-	Plug 'roxma/vim-hug-neovim-rpc'
-endif
-let g:deoplete#enable_at_startup = 1
 
 " post install (yarn install | npm install)
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
@@ -154,7 +142,6 @@ aug END
 nnoremap <leader>p :FZF<Cr>
 nnoremap <leader>f :Rg  
 nnoremap <leader>r :NERDTreeFind <bar> wincmd p<Cr>
-nnoremap <F6> :NERDTreeToggle <bar> wincmd p<Cr>
-nnoremap <leader>t :tabedit \| :NERDTreeToggle <bar> wincmd p<Cr>
+nnoremap <leader>t :tabedit<Cr>
 nnoremap <leader>y :tabclose<Cr>
 nnoremap <leader>c :ColorHighlight<Cr>
