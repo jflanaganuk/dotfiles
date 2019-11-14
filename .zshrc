@@ -62,7 +62,11 @@ ZSH_THEME="doubleend"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git docker)
+plugins=(
+	git
+	docker
+	zsh-syntax-highlighting
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -114,8 +118,6 @@ source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 
-export PATH="$PATH:/opt"
-
 export PATH="$HOME/.cargo/bin:$PATH"
 
 removedefiner()
@@ -132,3 +134,8 @@ removedefiner()
     LANG=$tmp_lang
 }
 alias valetplusplus='wf2'
+export PATH="$PATH:/opt"
+nvm use >/dev/null 2>&1
+wf2 -V > ~/.versions
+printf " / node " >> ~/.versions
+node -v >> ~/.versions
