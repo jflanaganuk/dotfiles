@@ -2,7 +2,7 @@
 PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/josh/.oh-my-zsh"
+export ZSH="/Users/joshua/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -65,6 +65,7 @@ ZSH_THEME="doubleend"
 plugins=(
 	git
 	docker
+	zsh-autosuggestions
 	zsh-syntax-highlighting
 )
 
@@ -114,7 +115,6 @@ export PATH="/Users/josh/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
 
@@ -134,8 +134,10 @@ removedefiner()
     LANG=$tmp_lang
 }
 alias valetplusplus='wf2'
-export PATH="$PATH:/opt"
-nvm use >/dev/null 2>&1
-wf2 -V > ~/.versions
-printf " / node " >> ~/.versions
-node -v >> ~/.versions
+alias gcf='gco $(git branch -a | fzf)'
+export PATH="/Users/josh/.cargo/bin:/Users/josh/.nvm/versions/node/v10.15.3/bin:/Users/josh/bin:/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:~/.composer/vendor/bin:/opt/X11/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/josh/.composer/vendor/bin:/Users/josh/.vimpkg/bin:/Users/josh/.fzf/bin:/opt"
+
+bindkey -v
+export KEYTIMEOUT=1
+alias lg="ls -alG | grep"
+nvm use 10 > /dev/null
